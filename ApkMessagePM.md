@@ -144,5 +144,4 @@ private List<PMAppInfo> getAppInfoList(int flag){
     }
 ```
 效果图：<br> <br>
-
 ![](https://github.com/13660139155/AndroidMessageObtainTest/raw/master/image/andoid_apk_pm.png) 
