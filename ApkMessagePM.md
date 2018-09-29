@@ -1,6 +1,6 @@
 ### PackageManager
     通过PackageManager可以获得应用的包信息，先看下面一张图, <br> <br>
-![](https://github.com/13660139155/AndroidMessageObtainTest/raw/master/image/android_manifestpng.png) <br> <br>
+![](https://github.com/13660139155/AndroidMessageObtainTest/raw/master/image/android_manifestpng.png) <br>
     最里面的框代表了整个Activity的信息，系统提供了ActivityInfo类来进行封装，以此类推。<br>
 #### 下面列举一些常用的系统封装信息
 * **ActivityInfo** <br>
