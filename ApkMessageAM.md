@@ -84,3 +84,4 @@ public class AMProcessInfo {
 ```
 效果图：<br> <br>
 
+![](https://github.com/13660139155/AndroidMessageObtainTest/blob/master/image/android_process_am.png)
