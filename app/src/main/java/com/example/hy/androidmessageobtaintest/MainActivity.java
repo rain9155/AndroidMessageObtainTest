@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.hy.androidmessageobtaintest.apkMessage.PMActivity;
 import com.example.hy.androidmessageobtaintest.systemMessage.SystemMessageObtainActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         btnToApk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MainActivity.this, PMActivity.class);
+                startActivity(intent);
             }
         });
 

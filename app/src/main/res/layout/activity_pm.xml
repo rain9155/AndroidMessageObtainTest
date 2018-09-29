@@ -6,4 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".apkMessage.PMActivity">
 
+    <Button
+        android:id="@+id/btn_all"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="@string/btn_All"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_system"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="@string/btn_system"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_all"/>
+
+    <Button
+        android:id="@+id/btn_3RD"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="@string/btn_3RD"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_system"/>
+
+    <Button
+        android:id="@+id/btn_sd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="@string/btn_sd"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_3RD"/>
+
+    <ListView
+        android:id="@+id/lv_appList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_sd">
+
+    </ListView>
+
+
+
 </android.support.constraint.ConstraintLayout>

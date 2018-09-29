@@ -3,4 +3,8 @@
     <string name="toSystemMessage">getSystemMessage</string>
     <string name="toApkMessageByPM">getApkMessageByPM</string>
     <string name="toApkMessageByAM">getApkMessageByAM</string>
+    <string name="btn_sd">Sd App</string>
+    <string name="btn_3RD">3RD App</string>
+    <string name="btn_system">System App</string>
+    <string name="btn_All">All App</string>
 </resources>
