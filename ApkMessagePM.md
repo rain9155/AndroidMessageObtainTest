@@ -1,6 +1,6 @@
 ### PackageManager
     通过PackageManager可以获得应用的包信息，先看下面一张图, <br> <br>
-![](https://github.com/13660139155/AndroidMessageObtainTest/raw/master/image/android_manifestpng.png) <br> <br>
+![](https://github.com/13660139155/AndroidMessageObtainTest/raw/master/image/android_manifestpng.png) 
 
     最里面的框代表了整个Activity的信息，系统提供了ActivityInfo类来进行封装，以此类推。<br>
 #### 下面列举一些常用的系统封装信息
@@ -19,11 +19,11 @@ ____
   
 #### PackageManager常用方法
 * **getPackagerManager**: 通过调用这个方法返回一个PackageManager对象
-* getApplicationInfo: 以ApplicationInfo形式返回指定包名的Application
-* getApplicationIcon：返回指定包名的icon
-* getInstalledApplication： 以ApplicationInfo形式返回安装的应用
-* getInstalledPackages：以PackageInfo的形式返回安装的应用
-* queryIntentActivities: 返回指定intent的ResolveInfo对象、Activity集合
-* queryIntentServices：返回指定intent的ResolveInfo对象、service集合
-* resolveActivity：返回指定intent的Activity
-* resolveService：返回指定的intentService
+* **getApplicationInfo**: 以ApplicationInfo形式返回指定包名的Application
+* **getApplicationIcon**：返回指定包名的icon
+* **getInstalledApplication**： 以ApplicationInfo形式返回安装的应用
+* **getInstalledPackages**：以PackageInfo的形式返回安装的应用
+* **queryIntentActivities**: 返回指定intent的ResolveInfo对象、Activity集合
+* **queryIntentServices**：返回指定intent的ResolveInfo对象、service集合
+* **resolveActivity**：返回指定intent的Activity
+* **resolveService**：返回指定的intentService
