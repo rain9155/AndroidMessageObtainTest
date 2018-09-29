@@ -1,0 +1,2 @@
+# AndroidMessageObtainTest
+Android系统信息获取，apk应用信息获取学习
