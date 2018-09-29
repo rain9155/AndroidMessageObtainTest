@@ -21,9 +21,125 @@ ____
 * **getPackagerManager**: 通过调用这个方法返回一个PackageManager对象
 * **getApplicationInfo**: 以ApplicationInfo形式返回指定包名的Application
 * **getApplicationIcon**：返回指定包名的icon
-* **getInstalledApplication**： 以ApplicationInfo形式返回安装的应用
+* **getInstalledApplications**： 以ApplicationInfo形式返回安装的应用
 * **getInstalledPackages**：以PackageInfo的形式返回安装的应用
 * **queryIntentActivities**: 返回指定intent的ResolveInfo对象、Activity集合
 * **queryIntentServices**：返回指定intent的ResolveInfo对象、service集合
 * **resolveActivity**：返回指定intent的Activity
 * **resolveService**：返回指定的intentService
+____
+
+    下面通过一个例子来了解如何通过PackageManager来选出不同类型的app，判断app类型的依据，就是利用Applicationinfo中的FLAG_SYSTEM来进行判断
+```java
+app.flags & Applicationinfo.FLAG_SYSTEM
+```
+* **如果flags & Applicationinfo.FLAG_SYSTEM ！= 0，则为系统应用** <br>
+* **如果flags & Applicationinfo.FLAG_SYSTEM <= 0, 则为第三方应用** <br>
+* **如果flags & Applicationinfo.FLAG_EXTERNAL_STORAGE != 0, 则为SD卡上的应用** <br>
+* **特殊的，当系统应用经过升级后，也将成为第三方应用：flags & Applicationinfo.FLAG_UPDATED_SYSTEM_APP != 0**
+<br>
+首先封装一个Bean保存我所需要的app信息：<br>
+
+```java
+public class PMAppInfo {
+
+    private String appName;//app名称
+    private Drawable appIcon;//图标
+    private String pkgName;//所在包名
+
+    public PMAppInfo(String appLabel, Drawable appIcon, String pkgName) {
+        this.appName = appLabel;
+        this.appIcon = appIcon;
+        this.pkgName = pkgName;
+    }
+
+    public String getAppLabel() {
+        return appName;
+    }
+
+    public void setAppLabel(String appName) {
+        this.appName = appName;
+    }
+
+    public Drawable getAppIcon() {
+        return appIcon;
+    }
+
+    public void setAppIcon(Drawable appIcon) {
+        this.appIcon = appIcon;
+    }
+
+    public String getPkgName() {
+        return pkgName;
+    }
+
+    public void setPkgName(String pkgName) {
+        this.pkgName = pkgName;
+    }
+
+}
+```
+
+接下来，通过上面所说的方法判断各种类型的app：<br>
+
+```java
+private List<PMAppInfo> getAppInfoList(int flag){
+        pm = this.getPackageManager();
+        //获取应用信息
+        List<ApplicationInfo> applicationInfoList = pm.getInstalledApplications(PackageManager.GET_UNINSTALLED_PACKAGES);
+        List<PMAppInfo> appInfoList = new ArrayList<>();
+        //判断应用类型
+        switch (flag){
+            case ALL_APP:
+                appInfoList.clear();
+                for (ApplicationInfo app : applicationInfoList) {
+                    appInfoList.add(new PMAppInfo(
+                            ((String) app.loadLabel(pm)),
+                            app.loadIcon(pm),
+                            app.packageName));
+                }
+                break;
+            case SYSTEM_APP:
+                appInfoList.clear();
+                for (ApplicationInfo app : applicationInfoList) {
+                    if ((app.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+                        appInfoList.add(new PMAppInfo(
+                                ((String) app.loadLabel(pm)),
+                                app.loadIcon(pm),
+                                app.packageName));
+                    }
+                }
+                break;
+            case THIRD_APP:
+                appInfoList.clear();
+                for (ApplicationInfo app : applicationInfoList) {
+                    if ((app.flags & ApplicationInfo.FLAG_SYSTEM) <= 0) {
+                        appInfoList.add(new PMAppInfo(
+                                ((String) app.loadLabel(pm)),
+                                app.loadIcon(pm),
+                                app.packageName));
+                    } else if ((app.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0) {
+                        appInfoList.add(new PMAppInfo(
+                                ((String) app.loadLabel(pm)),
+                                app.loadIcon(pm),
+                                app.packageName));
+                    }
+                }
+                break;
+            case SDCARD_APP:
+                appInfoList.clear();
+                for (ApplicationInfo app : applicationInfoList) {
+                    if ((app.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0) {
+                        appInfoList.add(new PMAppInfo(
+                                ((String) app.loadLabel(pm)),
+                                app.loadIcon(pm),
+                                app.packageName));
+                    }
+                }
+                break;
+            default:
+                return null;
+            }
+        return appInfoList;
+    }
+```
