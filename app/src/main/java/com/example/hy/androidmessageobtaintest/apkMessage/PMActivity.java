@@ -12,6 +12,9 @@ import com.example.hy.androidmessageobtaintest.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PackageManager,获取应用的包信息
+ */
 public class PMActivity extends AppCompatActivity {
 
     public static final int ALL_APP = 0;//列出所有app
