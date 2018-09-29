@@ -143,3 +143,6 @@ private List<PMAppInfo> getAppInfoList(int flag){
         return appInfoList;
     }
 ```
+效果图：<br> <br>
+
+![](https://github.com/13660139155/AndroidMessageObtainTest/raw/master/image/android_apk_pm.png) 
